@@ -52,6 +52,11 @@ foreach(glob(sx_plugin_path().'/shortcode/*.shortcode.php') as $activate_script)
 }
 
 /*
+*   Updater
+*/
+include sx_plugin_path().'/update.php';
+
+/*
 *   Navigation
 */
 include sx_plugin_path().'includes/navigation.include.php';
