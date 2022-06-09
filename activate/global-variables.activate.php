@@ -1,13 +1,13 @@
 <?php
 
 // Database name 
-$sx_database_global_values = 'sx-global-values';
+$sx_database_global_values = (substr($table_prefix, -1) == '_' ? '' : '_').'sx-global-values';
 
 /*
 *   Check if table exists 
 */
 if(!sx_standard_table_exist($sx_database_global_values)){
-
+    
     // Create table 
     $sql = 'CREATE TABLE `'.$table_prefix.'sx_global_values` (
         `id` int(11) NOT NULL,
