@@ -7,7 +7,7 @@ function sx_plugin_path(){
 
 
 // Table exist 
-function sx_table_exist($table_name = ''){
+function sx_standard_table_exist($table_name = ''){
     global $wpdb;
     $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
 
@@ -20,7 +20,7 @@ function sx_table_exist($table_name = ''){
 
 
 // Create table 
-function sx_create_table($table_name = '',$sql = ''){
+function sx_standard_create_table($table_name = '',$sql = ''){
     global $wpdb;
 
     $charset_collate = $wpdb->get_charset_collate();

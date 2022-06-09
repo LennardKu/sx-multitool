@@ -37,6 +37,14 @@ foreach (glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name."
 }
 
 /*
+*   Activate scripts 
+*   Database names
+*/
+foreach(glob(sx_plugin_path().'/activate/*.activate.php') as $activate_script){
+    require_once($activate_script);
+}
+
+/*
 *   Navigation
 */
-include 'includes/navigation.include.php';
+include sx_plugin_path().'includes/navigation.include.php';
