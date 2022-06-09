@@ -28,7 +28,7 @@ function sx_multitool_navigation(){
 */
 function sx_multitool_information(){
     // Include panel 
-    require sx_multitool_plugin_path().'panels/information.panel.php';
+    require sx_plugin_path().'panels/information.panel.php';
 }
 
 /*
@@ -36,7 +36,7 @@ function sx_multitool_information(){
 */
 function sx_multitool_global_variables(){
     // Include panel 
-    include 'panels/global-variables.panel.php';
+    include sx_plugin_path().'panels/global-variables.panel.php';
 }
 
 /*
@@ -44,7 +44,7 @@ function sx_multitool_global_variables(){
 */
 function sx_multitool_documents(){
     // Include panel 
-    include 'panels/documents.panel.php';
+    include sx_plugin_path().'panels/documents.panel.php';
 }
 
 
