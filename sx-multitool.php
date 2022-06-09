@@ -45,6 +45,13 @@ foreach(glob(sx_plugin_path().'/activate/*.activate.php') as $activate_script){
 }
 
 /*
+*   Shortcodes
+*/
+foreach(glob(sx_plugin_path().'/shortcode/*.shortcode.php') as $activate_script){
+    require_once($activate_script);
+}
+
+/*
 *   Navigation
 */
 include sx_plugin_path().'includes/navigation.include.php';
