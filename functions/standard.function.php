@@ -1,8 +1,8 @@
 <?php
 
 // Plugin path
-function sx_plugin_path(){
-    return $_SERVER['DOCUMENT_ROOT'].str_replace(get_site_url(),'',plugins_url('',__DIR__)).'/';
+function sx_plugin_path($type = ''){
+    return ($type == 'url' ? get_site_url() : $_SERVER['DOCUMENT_ROOT']).str_replace(get_site_url(),'',plugins_url('',__DIR__)).'/';
 }
 
 
