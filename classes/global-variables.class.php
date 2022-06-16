@@ -1,27 +1,27 @@
 <?php
 
-class global_variable{
+    class global_variable{
     
-    protected $database = array(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+        private $database;
+        private $database_name;
 
-    /*
-    *   Database 
-    */
-    public function database(){
-        global $sx_database_global_values;
-        $db = new db($this->database[0],$this->database[1],$this->database[2],$this->database[3]);
-        return array($db,$sx_database_global_values);
+        /*
+        *   Database 
+        */
+        public function __construct($database = '',$database_name = ''){
+            $this->database = new db($database[0],$database[1],$database[2],$database[3]);   
+            $this->database_name = $database_name;     
+        }
+    
+    
+        /*
+        *   Get variable
+        */
+        public function get_variable($slug = ''){
+            $db = $this->database;
+            $get_variable = $db->query('SELECT * FROM '.$this->database_name.' WHERE slug = ?',$slug)->fetchArray();
+            return $get_variable;
+        }
+    
+    
     }
-
-
-    /*
-    *   Get variable
-    */
-    public function get_variable($slug = ''){
-        $db = $this->database()[0];
-        $get_variable = $db->query('SELECT * FROM '.$this->database()[1].' WHERE slug = ?',$slug)->fetchArray();
-        return $get_variable;
-    }
-
-
-}
