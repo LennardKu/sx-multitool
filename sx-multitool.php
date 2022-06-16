@@ -17,7 +17,7 @@ define('Sx_file_access',true);
 
 /*
 *   Standard Values 
-*/
+*/ 
 $sx_plugin_name = 'sx-multitool';
 $version = '1.0';
 

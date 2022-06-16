@@ -1,0 +1,4 @@
+
+.panel_wrapper{max-width: 400px;width: 100%;height: 500px;border: 1px solid #ccc;margin: 16px 0;display: flex;flex-direction: column;}
+.panel_wrapper .panel_head{display: flex; align-items: center; justify-content: space-between;padding: 0 16px;border-bottom: 1px solid #ccc;background-color: #fff;position: sticky;top: 0;}
+.panel_wrapper .panel_body{background-color: #fff;height: 100%;overflow-y: auto;}

@@ -10,14 +10,14 @@ function sx_multitool_navigation(){
     
 
     // Style  
-    wp_enqueue_style('sx_development_style', plugins_url('/sx-development/src/css/style.css',__DIR__) );
+    wp_enqueue_style('sx_multitool_style', plugins_url('',__DIR__).'/src/css/style.css' );
  
     // Js 
     wp_enqueue_script(' js', plugins_url('/sx-development/src/js/main.js',__DIR__) , ['jquery']);
 
     // Submenu 
     add_submenu_page( 'sx_multitool', 'Standaard waarden', 'Standaard waarden', 'manage_options', 'sx_multitool_global_variables', 'sx_multitool_global_variables');
-    add_submenu_page( 'sx_multitool', 'Documenten ', 'Documenten', 'manage_options', 'sx_multitool_documents', 'sx_multitool_documents');
+    // add_submenu_page( 'sx_multitool', 'Documenten ', 'Documenten', 'manage_options', 'sx_multitool_documents', 'sx_multitool_documents');
 
 
 } add_action('admin_menu', 'sx_multitool_navigation');
