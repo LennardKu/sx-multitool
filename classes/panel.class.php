@@ -15,8 +15,8 @@ class panel{
     function __construct(){
 
         // Set uuid's
-        $this->panel_uuid = $this->creat_uuid();
-        $this->body_uuid = $this->creat_uuid();
+        $this->panel_uuid = $this->create_uuid();
+        $this->body_uuid = $this->create_uuid();
 
         $this->wrapper = '<div class="panel_wrapper" panel-uuid="'.$this->panel_uuid.'">';
             $this->head = '<div class="panel_head"></div>';
@@ -28,7 +28,7 @@ class panel{
     /*
     *   Generate 
     */
-    public function creat_uuid(){
+    public function create_uuid(){
         return  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
     }
 
