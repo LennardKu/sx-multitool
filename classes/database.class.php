@@ -1,5 +1,5 @@
 <?php
-class db {
+class sx_db {
 
     protected $connection;
 	protected $query;

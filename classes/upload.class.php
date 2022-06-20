@@ -118,6 +118,10 @@ class sx_upload{
     */
     public function get_file_information(){
 
+        if($this->allowed_upload == false){ // Could not upload
+            return 'Now allowed upload';
+        }
+
         return array('file_name'=>$this->file_name,'file_url'=>$this->file_url,'complete_url'=>$this->file_url.$this->file_name,'file_path'=>$this->file_path,'file_extension'=>$this->file_type);
 
     }

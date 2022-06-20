@@ -1,7 +1,7 @@
 <?php
 
 // Database name 
-$sx_database_global_values = $table_prefix.(substr($table_prefix, -1) == '_' ? $table_prefix : $table_prefix.'_').'sx-global-values';
+$sx_database_global_values = $table_prefix.(substr($table_prefix, -1) == '_' ? '' : '_').'sx-global-values';
 define('sx_database_global_values',$sx_database_global_values);
 
 /*
@@ -22,8 +22,13 @@ if(!sx_standard_table_exist($sx_database_global_values)){
     // Create table 
     sx_standard_create_table($sx_database_global_values,$sql);
 
-    // Create example values 
-    sx_global_value_create('Telefoonnummer','phone_number','+31 6 123 456 78');
-    sx_global_value_create('E-mail','mail','info@mail.com');
+   // Create example values 
+   $global_varibale = new global_variable(sx_database(),sx_database_global_values);
+   $global_varibale->create_variable('Telefoonnummer','phone_number','+316 123 456 78');
+
+   $global_varibale = new global_variable(sx_database(),sx_database_global_values);
+   $global_varibale->create_variable('E-mail','email','info@website.com');
 
   }
+
+   

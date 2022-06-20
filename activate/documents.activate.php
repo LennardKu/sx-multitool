@@ -1,7 +1,7 @@
 <?php
 
 // Database name 
-$sx_database_global_values = $table_prefix.(substr($table_prefix, -1) == '_' ? $table_prefix : $table_prefix.'_').'sx_documents';
+$sx_database_global_values = $table_prefix.(substr($table_prefix, -1) == '_' ? '' : '_').'sx_documents';
 
 /*
 *   Check if table exists 
