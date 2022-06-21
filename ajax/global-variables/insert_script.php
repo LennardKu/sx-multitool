@@ -55,7 +55,7 @@ if(isset($_GET['confirm'])){
     $name = (isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '');
     $location = (isset($_POST['header']) ? 'header' : 'footer');
 
-    $script_content = $_POST['script'];
+    $script_content = stripslashes($_POST['script']);
 
     if(empty(trim($name))){ echo 'fill_in_all_data'; exit; } // Not all data filled in
 
@@ -68,6 +68,5 @@ if(isset($_GET['confirm'])){
 
     $create_script = new global_variable(sx_database(),sx_database_scripts);
     $create_script->create_script($name,$script_content,$url,$location);
-
     echo 'success';
 }
