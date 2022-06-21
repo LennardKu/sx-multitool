@@ -7,13 +7,9 @@ function sx_multitool_navigation(){
    
     // Menu 
     add_menu_page('Sx Multitool', 'Sx Multitool', 'manage_options', 'sx_multitool', 'sx_multitool_information',plugins_url('/sx-multitool/img/icon.svg',__DIR__));
-    
 
     // Style  
-    wp_enqueue_style('sx_multitool_style', plugins_url('',__DIR__).'/src/css/style.css' );
- 
-    // Js 
-    wp_enqueue_script(' js', plugins_url('/src/js/main.js',__DIR__) , ['jquery']);
+    wp_enqueue_style('sx_multitool_style', plugins_url('',__DIR__).'/src/css/style.css'  );
 
     // Submenu 
     add_submenu_page( 'sx_multitool', 'Standaard waarden', 'Standaard waarden', 'manage_options', 'sx_multitool_global_variables', 'sx_multitool_global_variables');

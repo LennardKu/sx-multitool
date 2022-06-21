@@ -13,7 +13,7 @@ jQuery(document).on('click','[sx-open-modal]',function(){
 jQuery(document).on('click','[sx-minimize-modal]',function(){
     jQuery('[sx-modal-uuid="'+jQuery(this).attr('sx-minimize-modal')+'"]').hide();
     // <span sx-remove-modal="'+jQuery(this).attr('sx-minimize-modal')+'">Sluiten</span>
-    jQuery("[sx-popups='wrapper']").append('<div sx-popups="container" pointer="true" status="information" sx-open-modal="'+jQuery(this).attr('sx-minimize-modal')+'"><span>Variable maken</span></div></div>');
+    jQuery("[sx-popups='wrapper']").append('<div sx-popups="container" pointer="true" status="information" sx-open-modal="'+jQuery(this).attr('sx-minimize-modal')+'"><span>'+jQuery(this).attr('information')+'</span></div></div>');
 });
 
 /*

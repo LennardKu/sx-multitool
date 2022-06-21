@@ -15,6 +15,7 @@ if(!sx_standard_table_exist($sx_database_global_values)){
         `name` varchar(255) NOT NULL,
         `slug` varchar(255) NOT NULL,
         `value` varchar(255) NOT NULL,
+        `status` varchar(255) NOT NULL,
         `created_at` datetime NOT NULL DEFAULT current_timestamp()
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
       ';

@@ -72,7 +72,7 @@ class sx_upload{
     *   Get file type
     */
     public function get_file_type(){
-
+        
         $tmp = explode('.', $this->file['name']);
         $file_extension = end($tmp);
         return $file_extension;
@@ -83,16 +83,21 @@ class sx_upload{
     *   Chec uploaded file 
     */
     public function check_file_type(){
-        
+
         if(empty($this->allowed_file_types)){ // allow all uploads 
             $this->allowed_upload = true;
             return false;
         }
 
-        if(in_array($this->allowed_file_types,$this->file_type)){
-            $this->allowed_upload = true;
-        }
         $this->allowed_upload = false;
+
+        // allowed types 
+        foreach($this->allowed_file_types as $allowed){
+            if($allowed == $this->file_type){
+                $this->allowed_upload = true;
+                break;
+            }
+        }
 
     }
 

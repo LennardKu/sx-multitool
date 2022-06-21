@@ -6,6 +6,7 @@ class modal{
     public $modal_body_uuid;
     public $modal_head_uuid;
     public $modal_footer_uuid;
+    public $modal_name;
     public $modal_head;
     public $modal_body;
     public $modal_footer;
@@ -21,6 +22,7 @@ class modal{
         $this->modal_body_uuid = $this->create_uuid();
         $this->modal_head_uuid = $this->create_uuid();
         $this->modal_footer_uuid = $this->create_uuid();
+        $this->modal_name = 'Popup';
 
     }   
     
@@ -36,6 +38,7 @@ class modal{
     */
     public function head($head = ''){
         $this->modal_head = $head;
+        $this->modal_name = $head;
     }
     
     /*
@@ -67,7 +70,7 @@ class modal{
 
         $output .= '<div sx-modal="wrapper" sx-modal-uuid="'.$this->modal_uuid.'" '.$this->modal_attr.'>';
             $output .= '<div sx-modal="container">';
-                $output .= '<div sx-modal="head"><h2>'.$this->modal_head.'</h2> <span><span sx-minimize-modal="'.$this->modal_uuid.'">mini</span> <span sx-remove-modal="'.$this->modal_uuid.'">X</span></span></div>';
+                $output .= '<div sx-modal="head"><h2>'.$this->modal_head.'</h2> <span><span information="'.$this->modal_name.'" sx-minimize-modal="'.$this->modal_uuid.'">mini</span> <span sx-remove-modal="'.$this->modal_uuid.'">X</span></span></div>';
                 $output .= '<div sx-modal="body">'.$this->modal_body.'</div>';
                 $output .= '<div sx-modal="footer">'.$this->modal_footer.'</div>';
             $output .= '</div>';

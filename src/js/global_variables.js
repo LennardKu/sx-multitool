@@ -59,8 +59,40 @@ jQuery(document).on('click','[create-btn="create_variable"]',function(){
     create_variable();
 });
 
-// Load content 
-jQuery("[load-content][loaded='false']").each(function() { 
-    if(jQuery(this).attr('offset') !== undefined){offset = jQuery(this).attr('offset'); }
-    get_content(jQuery(this).attr('load-content'),jQuery(this),offset);
+/*
+*   Insert script
+*/
+const insert_script = ()=>{
+
+    sx_create_variable_btn = jQuery(this);
+
+    sx_loading_screen(true); // Enable loading screen
+
+    if(sx_create_variable_btn.attr('executing') == 'true'){ return false; } // Check if already executing
+    sx_create_variable_btn.attr('executing','true'); // Set executing
+
+    jQuery.ajax({
+        url:sx_plugin_location+'/ajax/global-variables/insert_script.php',
+        type:'get',
+        data:{
+            get_modal:true
+        },success:function(response){
+            if(response == 'error'){ alert('Er ging iets mis.'); sx_create_variable_btn.attr('executing','false'); sx_loading_screen(false); return false; }
+
+            sx_create_variable_btn.attr('executing','false'); // Disable executing
+            jQuery("body").append(response); // Put response inside body
+            sx_loading_screen(false); // Disable loading screen 
+
+        }
+    }); 
+
+}
+
+/*
+*   Insert script btn
+*/
+jQuery(document).on('click','[create-btn="insert_script"]',function(){
+    insert_script();
 });
+
+
