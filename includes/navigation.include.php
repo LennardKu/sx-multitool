@@ -13,7 +13,7 @@ function sx_multitool_navigation(){
     wp_enqueue_style('sx_multitool_style', plugins_url('',__DIR__).'/src/css/style.css' );
  
     // Js 
-    wp_enqueue_script(' js', plugins_url('/sx-development/src/js/main.js',__DIR__) , ['jquery']);
+    wp_enqueue_script(' js', plugins_url('/src/js/main.js',__DIR__) , ['jquery']);
 
     // Submenu 
     add_submenu_page( 'sx_multitool', 'Standaard waarden', 'Standaard waarden', 'manage_options', 'sx_multitool_global_variables', 'sx_multitool_global_variables');

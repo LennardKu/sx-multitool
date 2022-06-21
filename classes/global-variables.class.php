@@ -24,6 +24,16 @@
         }
     
         /*
+        *   Get variables / Limit 25
+        */
+        public function get_variables($offset = 0){
+            $db = $this->database;
+            $get_variables = $db->query('SELECT * FROM `'.$this->database_name.'` ORDER BY id DESC LIMIT 25 OFFSET '.($offset * 25))->fetchAll();
+            return $get_variables;
+        }
+    
+
+        /*
         *   Create variable
         */
         public function create_variable($name = '',$slug = '',$value = ''){
