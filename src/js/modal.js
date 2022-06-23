@@ -1,3 +1,5 @@
+const sx_plugin_location_modal = document.currentScript.getAttribute('sx_plugin_location');
+
 /*
 *   Modal Options
 */
@@ -15,6 +17,29 @@ jQuery(document).on('click','[sx-minimize-modal]',function(){
     // <span sx-remove-modal="'+jQuery(this).attr('sx-minimize-modal')+'">Sluiten</span>
     jQuery("[sx-popups='wrapper']").append('<div sx-popups="container" pointer="true" status="information" sx-open-modal="'+jQuery(this).attr('sx-minimize-modal')+'"><span>'+jQuery(this).attr('information')+'</span></div></div>');
 });
+
+/*
+*   Confirm modal 
+*/
+const sx_confirm_modal = (text,btn_uuid)=>{
+    sx_loading_screen(true); // enable loading screen   
+
+    jQuery.ajax({
+        url:sx_plugin_location_modal+'/ajax/confirm_modal.php',
+        type:'get',
+        data:{
+            text:text,
+            btn_uuid
+        },success:function(response){
+            if(response == 'error'){ sx_popups('Er ging iets mis','error',true); sx_loading_screen(false); return false;} // Error
+
+            sx_loading_screen(false);  // Disable loading screen 
+            jQuery('body').append(response);
+
+        }
+    });
+
+}
 
 /*
 *   Check if modal exists

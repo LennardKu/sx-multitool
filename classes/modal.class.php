@@ -15,7 +15,7 @@ class modal{
     /*
     *   Construct
     */
-    function __construct(){
+    function __construct($attr = ''){
 
         // Standard variables 
         $this->modal_uuid = $this->create_uuid();
@@ -23,6 +23,7 @@ class modal{
         $this->modal_head_uuid = $this->create_uuid();
         $this->modal_footer_uuid = $this->create_uuid();
         $this->modal_name = 'Popup';
+        $this->modal_attr = $attr;
 
     }   
     
@@ -70,7 +71,7 @@ class modal{
 
         $output .= '<div sx-modal="wrapper" sx-modal-uuid="'.$this->modal_uuid.'" '.$this->modal_attr.'>';
             $output .= '<div sx-modal="container">';
-                $output .= '<div sx-modal="head"><h2>'.$this->modal_head.'</h2> <span><span information="'.$this->modal_name.'" sx-minimize-modal="'.$this->modal_uuid.'">mini</span> <span sx-remove-modal="'.$this->modal_uuid.'">X</span></span></div>';
+                $output .= '<div sx-modal="head"><h2>'.$this->modal_head.'</h2> <span options><span information="'.$this->modal_name.'" sx-minimize-modal="'.$this->modal_uuid.'">mini</span> <span sx-remove-modal="'.$this->modal_uuid.'">X</span></span></div>';
                 $output .= '<div sx-modal="body">'.$this->modal_body.'</div>';
                 $output .= '<div sx-modal="footer">'.$this->modal_footer.'</div>';
             $output .= '</div>';

@@ -52,6 +52,9 @@ const sx_popups = (text,state,auto_delete)=>{
 jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
     form = jQuery(this);
     form_uuid = form.attr('sx-form-uuid');
+    delete_value = '';
+
+    if(form.attr('delete') !== undefined && form.attr('delete') == 'true'){ delete_value = '&delete_value=true';}
 
     // Check Values 
     if(form.attr('sx-sumbit-page') == undefined){ sx_popups('Geen submit pagina toegevoegd','error',true); return false; } // Page
@@ -65,7 +68,7 @@ jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
     data.append("label", "WEBUPLOAD");
 
     jQuery.ajax({
-        url: sx_plugin_location_main+'/ajax/'+form.attr('sx-sumbit-page'),
+        url: sx_plugin_location_main+'/ajax/'+form.attr('sx-sumbit-page')+delete_value,
         data: data,
         processData: false,
         type: 'POST',
@@ -90,7 +93,16 @@ jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
             // Data created
             if(data == 'success'){
                 form[0].reset();
-                sx_popups('Variable aangemaakt','success',true); 
+
+                if(form.attr('delete-modal') !== undefined){
+                    jQuery('[sx-modal-uuid="'+form.attr('delete-modal')+'"]').remove();
+                }
+
+                if(form.attr('delete') == undefined){
+                    sx_popups('Variable aangemaakt','success',true); 
+                }else{
+                    sx_popups('Item verwijderd','error',true); 
+                }
 
                 if(form.attr('after-function') !== undefined){
                     jQuery('body').append('<script>'+form.attr('after-function')+'</script>');
@@ -112,9 +124,43 @@ jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
 });
 
 /*
+*   Confirm button
+*/
+jQuery(document).on('click','[confirm-btn]',function(){
+    if(jQuery(this).attr('confirm-btn') == 'false'){
+
+        btn_uuid = sx_random_string(15);
+        jQuery(this).attr('btn-uuid',btn_uuid);
+        
+        sx_confirm_modal('Weet u zeker dat u het script wilt verwijderen.',btn_uuid);
+
+        return false;
+    }
+    return true; 
+});
+
+jQuery(document).on('click','[confirmed]',function(){
+    btn_uuid = jQuery(this).attr('confirmed');
+    jQuery('[btn-uuid="'+btn_uuid+'"]').attr('confirm-btn','true');
+    jQuery('[btn-uuid="'+btn_uuid+'"]').attr('sx-submit-form',jQuery('[btn-uuid="'+btn_uuid+'"]').attr('sx-submit-form-confirm'));
+    jQuery('[btn-uuid="'+btn_uuid+'"]').click();
+});
+
+/*
+*   Copy content
+*/
+jQuery(document).on('click','[copy-content]',function(){
+    text = jQuery(this).html();
+    navigator.clipboard.writeText(text).then(function() {});
+    sx_popups('Gekopieerd naar klembord.','success',true); // disable loading
+});
+
+/*
 *   Form submit
 */
 jQuery(document).on('click','[sx-submit-form]',function(){
+    if(jQuery(this).attr('delete') !== undefined){ jQuery("[sx-form-uuid='"+jQuery(this).attr('sx-submit-form')+"']").attr('delete','true'); }
+
     jQuery("[sx-form-uuid='"+jQuery(this).attr('sx-submit-form')+"']").submit();
     jQuery(this).html('Versturen...'); // Change btn text
     return false;

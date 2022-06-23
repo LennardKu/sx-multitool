@@ -7,9 +7,7 @@ const get_documents = ()=>{
     jQuery.ajax({
         url:document_ajax_map+'/get_documents.php',
         type:"get",
-        data:{
-
-        },success:function(documents){
+        data:{},success:function(documents){
             jQuery("[panel_body_uuid='"+document_body_uuid+"']").html(documents);
         }
     });

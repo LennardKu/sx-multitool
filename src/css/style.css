@@ -1,6 +1,7 @@
 *{ box-sizing: border-box; margin: 0; padding: 0; }
 [pointer="true"]{cursor: pointer;}
 [pointer="true"]:hover{opacity: 0.8;}
+[btn="default"]{ padding: 12px 24px; border: none; background: #45a049; color: #fff;cursor: pointer;}
 
 /*
 *   Loading screen
@@ -43,12 +44,20 @@
 
 /* Modal  */
 [sx-modal="wrapper"]{width: 100%;position: fixed;height: 100vh; background-color: rgba(225, 225, 225,0.6); top: 0;left: 0;display: flex;justify-content: center;align-items: center;z-index: 100000;}
+[sx-modal="wrapper"][small] [sx-modal="container"]{max-width: 400px;}
 [sx-modal="wrapper"] [sx-modal="container"]{width: 100%;max-width: 800px;max-height: 70vh;background-color: #fff;}
 [sx-modal="wrapper"] [sx-modal="container"] [sx-modal="head"]{position: sticky;top: 0; width: 100%; padding: 16px; background-color: #2196F3;display: flex;justify-content: space-between;align-items: center;font-weight: bold;color: #fff;}
 [sx-modal="wrapper"] [sx-modal="container"] [sx-modal="head"] h2{color: #fff;font-size: x-large;}
+[sx-modal="wrapper"][small] [sx-modal="container"] [sx-modal="head"] h2{font-size: medium;}
 [sx-modal="wrapper"] [sx-modal="container"] [sx-modal="body"]{min-height: 15vh;}
+[sx-modal="wrapper"][small] [sx-modal="container"] [sx-modal="body"]{min-height: 15vh;display: flex;align-items: center;justify-content: center;}
+[sx-modal="wrapper"][small] [sx-modal="container"] [sx-modal="footer"],[sx-modal="wrapper"][small] [sx-modal="container"] [sx-modal="head"] [options]{display: none;}
 [sx-modal="wrapper"] [sx-modal="container"] [sx-modal="footer"]{position: sticky;bottom: 0; width: 100%; padding: 16px; background:#fff;border-top:1px solid #ccc; display: flex;justify-content: space-between;align-items: center;font-weight: bold;color: #fff;flex-direction: row-reverse;}
-[sx-modal="wrapper"] [sx-modal="container"] [sx-modal="footer"] [right]{align-self: flex-end;padding: 10px 16px;border: none;background-color: #45a049;border-radius: 0;color: #fff;}
+[sx-modal="wrapper"] [sx-modal="container"] [right],[sx-modal="wrapper"] [sx-modal="container"] [left]{align-self: flex-end;padding: 10px 16px;border: none;background-color: #45a049;border-radius: 0;color: #fff;}
+[sx-modal="wrapper"] [sx-modal="container"] [not-important]{border:1px solid #f44336;background:#fff;color:#111}
+[sx-modal="wrapper"] [sx-modal="container"] [right]:hover,
+[sx-modal="wrapper"] [sx-modal="container"] [left]:hover{cursor: pointer;opacity: 0.8;}
+
 
 /*
 *   Form

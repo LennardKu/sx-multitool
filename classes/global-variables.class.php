@@ -17,9 +17,9 @@
         /*
         *   Get variable
         */
-        public function get_variable($slug = ''){
+        public function get_variable($data = '',$column = 'slug'){
             $db = $this->database;
-            $get_variable = $db->query('SELECT * FROM `'.$this->database_name.'` WHERE slug = ?',$slug)->fetchArray();
+            $get_variable = $db->query('SELECT * FROM `'.$this->database_name.'` WHERE `'.$column.'` = ?',$data)->fetchArray();
             return $get_variable;
         }
     
@@ -44,6 +44,30 @@
 
             $db = $this->database;
             $create_variable = $db->query('INSERT INTO `'.$this->database_name.'` (`name`,`script_content`,`uploaded_script`,`status`,`location`) VALUES (?,?,?,?,?)',$name,$script_content,$uploaded_script,'active',$location);
+
+            return 'success';
+
+        }
+
+        /*
+        *   Delete
+        */
+        public function delete($data = '',$column = 'id'){
+
+            $db = $this->database;
+            $create_variable = $db->query("DELETE FROM `".$this->database_name."` WHERE `".$this->database_name."`.`".$column."` = ".$data."");
+
+            return 'success';
+
+        }
+
+        /*
+        *   Update
+        */
+        public function update($data = '',$column = 'name',$where_column = 'id',$where_value = ''){
+
+            $db = $this->database;
+            $db->query('UPDATE `'.$this->database_name.'` SET `'.$column.'` = ? WHERE `'.$this->database_name.'`.`'.$where_column.'` = ?',$data,$where_value);
 
             return 'success';
 
