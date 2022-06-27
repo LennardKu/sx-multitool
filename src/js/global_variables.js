@@ -89,6 +89,22 @@ const insert_script = ()=>{
 }
 
 /*
+*   Vieuw concept
+*/
+jQuery(document).on('click','[cookie-concept]',function(){
+    form = jQuery('[sx-form-uuid="'+jQuery(this).attr('cookie-concept')+'"]');
+
+    form.attr('target','_blank');
+    form.attr('reload','true');
+    form.attr('method','post');
+    old_action_page = form.attr('action',sx_plugin_location+'/includes/cookie_concent.concept.php');
+    
+    form.submit();
+    form.attr('reload','false');
+
+});
+
+/*
 *   Edit content
 */
 const edit_content = (element)=>{

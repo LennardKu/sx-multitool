@@ -55,7 +55,7 @@ if($edit_type == 'get_scripts'){
             $body .= '<br />';
             $body .= '<br />';
 
-            $body .= '<label for="status"><input type="checkbox" id="status" name="location" '.($script_data['status'] == 'active' ? 'checked' : '').'> Status</label>';
+            $body .= '<label for="status"><input type="checkbox" id="status" name="status" '.($script_data['status'] == 'active' ? 'checked' : '').'> Status</label>';
 
         $body .= '</form>';
     $body .= '</div>';

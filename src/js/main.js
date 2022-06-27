@@ -92,7 +92,8 @@ jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
 
             // Data created
             if(data == 'success'){
-                form[0].reset();
+                
+                if(form.attr('dont-reset-form') == undefined){ form[0].reset(); }
 
                 if(form.attr('delete-modal') !== undefined){
                     jQuery('[sx-modal-uuid="'+form.attr('delete-modal')+'"]').remove();
@@ -144,6 +145,43 @@ jQuery(document).on('click','[confirmed]',function(){
     jQuery('[btn-uuid="'+btn_uuid+'"]').attr('confirm-btn','true');
     jQuery('[btn-uuid="'+btn_uuid+'"]').attr('sx-submit-form',jQuery('[btn-uuid="'+btn_uuid+'"]').attr('sx-submit-form-confirm'));
     jQuery('[btn-uuid="'+btn_uuid+'"]').click();
+});
+
+/*
+*   Change data
+*/
+jQuery(document).on('change','[change-data]',function(){
+    btn = jQuery(this);
+    
+    // Check if executing
+    if(btn.attr('executing') !== undefined && btn.attr('executing') == 'true'){ sx_popups('Opdracht word uitgevoerd.','error',true); return false; }
+    btn.attr('executing','true'); // Set executing
+    sx_loading_screen(true);
+
+    state = 'false';
+    if( btn.is(":checked")){state = 'true';}
+    key = btn.attr('change-data');
+
+    jQuery.ajax({
+        url: sx_plugin_location_main+'/ajax/change_data.php',
+        type:'post',
+        data:{
+            state:state,
+            key:key
+        },success:function(response){
+            sx_loading_screen(false);
+            btn.attr('executing','false'); // Disable executing  
+            
+            if(response == 'error'){ sx_popups('Opdracht mislukt.','error',true); return false;} // Error         
+
+            sx_popups('Gewijzigd.','success',true); 
+
+        },error: function(){
+            sx_loading_screen(false);
+            btn.attr('executing','false'); // Disable executing  
+        }
+    });
+
 });
 
 /*

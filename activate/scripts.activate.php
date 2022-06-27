@@ -1,7 +1,7 @@
 <?php
 
 // Database name 
-$sx_database_scripts = $table_prefix.(substr($table_prefix, -1) == '_' ? '' : '_').'sc_scripts';
+$sx_database_scripts = $table_prefix.(substr($table_prefix, -1) == '_' ? '' : '_').'sx_scripts';
 define('sx_database_scripts',$sx_database_scripts);
 
 /*

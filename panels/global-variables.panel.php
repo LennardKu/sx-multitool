@@ -11,7 +11,7 @@ if(!defined('Sx_file_access')){ die('Could not open file');} // Disable direct a
 echo '<div class="sx_tabs">';
 
     echo '<input type="radio" name="sx_tabs" id="standard_variables" checked="checked">';
-    echo '<label for="standard_variables">Standaard variabelen </label>';
+    echo '<label for="standard_variables" class="tab_indicator">Standaard variabelen </label>';
     echo '<div class="tab">';
         echo '<h1>Standaard waarde</h1>';    
 
@@ -33,7 +33,7 @@ echo '<div class="sx_tabs">';
     *   Scripts
     */  
     echo '<input type="radio" name="sx_tabs" id="google_fields">';
-    echo '<label for="google_fields">Scripts </label>';
+    echo '<label for="google_fields" class="tab_indicator">Scripts </label>';
     echo '<div class="tab">';
         echo '<h1>Scripts</h1>';
         
@@ -56,7 +56,7 @@ echo '<div class="sx_tabs">';
     *   Login page
     */
     echo '<input type="radio" name="sx_tabs" id="login_page" >';
-    echo '<label for="login_page">Login pagina</label>';
+    echo '<label for="login_page" class="tab_indicator">Login pagina</label>';
     echo '<div class="tab">';
         echo '<h1>Login pagina</h1>'; 
     echo '</div>';
@@ -64,10 +64,38 @@ echo '<div class="sx_tabs">';
     /*
     *   Cookie message 
     */
+    $cookie_message = new cookie_message;
+
     echo '<input type="radio" name="sx_tabs" id="cookie_message" >';
-    echo '<label for="cookie_message">Cookie melding</label>';
+    echo '<label for="cookie_message"class="tab_indicator">Cookie melding</label>';
     echo '<div class="tab">';
-        echo '<h1>Cookie melding</h1>'; 
+        echo '<h1><label style="background-color:transparent"><input '.($cookie_message->cookie_information()['status'] == 'true' ? 'checked' : '').' type="Checkbox" change-data="change_cookie_message" /> Cookie melding</label></h1>'; 
+
+        echo '<div class="" style="max-width:900px">';
+
+            $form_uuid = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
+
+            echo '<div class="container sx-form-wrapper">';
+                echo '<form sx-form-uuid="'.$form_uuid.'" sx-sumbit-page="/global-variables/cookie_message.php?edit=true" dont-reset-form="true" reload="false">'; 
+                        
+                    echo '<label for="variable">Melding</label>';
+                    echo '<textarea style="height:200px" name="message">'.$cookie_message->cookie_information()['message'].'</textarea>';
+
+                    echo '<label for="variable">style</label>';
+                    echo '<textarea style="height:200px" name="style">'.$cookie_message->cookie_information()['style'].'</textarea>';
+
+                    echo '<label for="variable">Accept scripts</label>';
+                    echo '<textarea style="height:200px" name="accept">'.$cookie_message->cookie_information()['accept'].'</textarea>';
+
+                echo '</form>';
+
+                echo '<button btn="not-important" style="margin-right:10px" cookie-concept="'.$form_uuid.'">Concept bekijken</button>';
+                echo '<button btn="default" sx-submit-form="'.$form_uuid.'">Opslaan</button>';
+            echo '</div>';
+
+        echo '</div>';
+
+
     echo '</div>';
 
 echo '</div>';
