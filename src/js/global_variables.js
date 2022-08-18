@@ -16,8 +16,14 @@ const get_content = (content_name,container,offset)=> {
         },success:function(response){
             if(response == 'error'){ alert('Er ging iets mis met het laden van: '+content_name); return false; } // Error
 
-            container.html(response); // Put data inside container
             container.attr('loaded','true'); // Set container loaded
+
+            if(container.attr('src-after') !== undefined){
+                container.attr('src',response); // Put data inside container
+                return;
+            }
+
+            container.html(response); // Put data inside container
         }
     });
 }

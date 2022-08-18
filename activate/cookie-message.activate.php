@@ -24,9 +24,11 @@ if(!sx_standard_table_exist($sx_database_cookie_message)){
 
   }
 
-  function sx_cookie_message() {
-    $get_variables = new cookie_message;
-    echo $get_variables->get_cookie();
-  } 
+  if(!isset($_COOKIE['sx-multitool-accept-cookie'])){
+    function sx_cookie_message() {
+      $get_variables = new cookie_message;
+      echo $get_variables->get_cookie();
+    } 
   
-  add_action( 'wp_footer', 'sx_cookie_message' );
+    add_action( 'wp_footer', 'sx_cookie_message' );
+  }

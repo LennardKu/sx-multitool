@@ -13,7 +13,7 @@ if(isset($_GET['edit'])){
 
     $message = (isset($_POST['message']) ? stripslashes($_POST['message']) : '');
     $style = (isset($_POST['style']) ? stripslashes($_POST['style']) : '');
-    $accept = (isset($_POST['accept']) ? stripslashes($_POST['accept']) : '');
+    $accept = (isset($_POST['accept']) ? (!is_array($_POST['accept']) ? stripslashes($_POST['accept']) : '') : '');
 
     $cookie_message = new cookie_message;
     $cookie_message->update($message,'message');

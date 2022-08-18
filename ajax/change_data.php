@@ -19,7 +19,7 @@ if($key == 'change_cookie_message'){
 
     $cookie_message = new cookie_message;
     $cookie_message->update($state,'status');
-
+    
     exit;
 }
 

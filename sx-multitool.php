@@ -61,3 +61,35 @@ include sx_plugin_path().'/update.php';
 */
 include sx_plugin_path().'includes/navigation.include.php';
 
+// Change login page
+function themeprefix_login_page() { 
+    $login_page_style = new sx_login_screen;
+    $login_page_style = $login_page_style->get_items();
+    
+    foreach($login_page_style as $style){
+        if($style['slug'] == 'logo'){
+            echo '<style> #login h1 a{ background-image:url('.get_site_url().$style['value'].');background-size:contain;max-width:280px;width:100%;}</style>';
+            continue;
+        }
+
+        echo '<style>'.$style['slug'].'{'.$style['type'].':'.$style['value'].' !important}</style>';
+    }
+
+ }
+add_action( 'login_enqueue_scripts', 'themeprefix_login_page' );
+
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+    return 'Simplix';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+
+// Cookie accept 
+if(isset($_POST['sx-multitool-accept-cookie'])){
+    setcookie('sx-multitool-accept-cookie',  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(25/strlen($x)) )),1,25), time() + (86400 * 356), "/"); // 86400 = 1 day
+}

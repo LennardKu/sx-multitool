@@ -26,8 +26,7 @@ const sx_random_string = (length)=>{
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
     for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
-        charactersLength));
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
    }
    return result;
 }
@@ -107,7 +106,7 @@ jQuery(document).on('submit','[sx-form-uuid][reload="false"]',function(){
 
                 if(form.attr('after-function') !== undefined){
                     jQuery('body').append('<script>'+form.attr('after-function')+'</script>');
-                }
+                } 
 
                 return false;
             } 
@@ -229,3 +228,31 @@ jQuery(window).on('load',function(){
     jQuery('body').append('<div sx-popups="wrapper"></div>'); // Insert popup wrapper
     load_content(); // Load content
 });
+
+/*
+*   Load single item 
+*/
+const loadSingleItem = (Element)=>{
+    content_name = Element;
+    container = jQuery('[load-content="'+content_name+'"]');
+    
+    jQuery.ajax({
+        url:sx_plugin_location_main+'/ajax/global-variables/load_content.php',
+        type:'get',
+        data:{
+            content_name:content_name,
+        },success:function(response){
+            if(response == 'error'){ alert('Er ging iets mis met het laden van: '+content_name); return false; } // Error
+
+            
+            container.attr('loaded','true'); // Set container loaded
+
+            if(container.attr('src-after') !== undefined){
+                container.attr('src',response); // Put data inside container
+                return;
+            }
+
+            container.html(response); // Put data inside container
+        }
+    });
+}

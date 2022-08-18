@@ -51,3 +51,27 @@ if($content_name == 'get_scripts'){
 
     exit; // Not allow to do other actions
 }
+
+/*
+*   Accept scripts
+*/
+if($content_name == 'accept_script_variables'){
+        
+    $get_variables = new global_variable(sx_database(),sx_database_scripts);
+    
+    foreach($get_variables->get_variables($offset) as $number => $get_variable){
+        echo '<option value="'.$get_variable['id'].'">'.$get_variable['name'].'</option>';
+    }
+
+    exit; // Not allow to do other actions
+}
+
+/*
+*   Logo login
+*/
+if($content_name == 'logo-login'){
+    $login_logo = new sx_login_screen;
+    if($login_logo->check_item('logo')){
+        echo get_site_url().$login_logo->get_item('logo')['value'];
+    }
+}
