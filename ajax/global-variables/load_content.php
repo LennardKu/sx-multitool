@@ -75,3 +75,13 @@ if($content_name == 'logo-login'){
         echo get_site_url().$login_logo->get_item('logo')['value'];
     }
 }
+
+/*
+*  Background login
+*/
+if($content_name == 'background-login'){
+    $login_logo = new sx_login_screen;
+    if($login_logo->check_item('logo')){
+        echo get_site_url().$login_logo->get_item('background')['value']; 
+    }
+}

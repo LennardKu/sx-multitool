@@ -42,4 +42,20 @@ if(isset($_FILES['logo']) && $_FILES['logo']['size'] !== 0){
     }
 }
 
+if(isset($_FILES['background']) && $_FILES['background']['size'] !== 0){
+    $name = 'background-login';
+    $upload = new sx_upload($_FILES['background'],array('jpg','png','gif','svg','jpeg'),$name);
+    $upload->create_file();
+    $url = str_replace(get_site_url(),'',$upload->get_file_information()['complete_url']);
+
+    // Check if item already exists 
+    if($setColors->check_item('background')){
+        $setColors->update_item('background','value',$url);
+    }else{
+        $setColors->create_item('background',$url,'background');
+
+    }
+}
+
+
 echo 'success';

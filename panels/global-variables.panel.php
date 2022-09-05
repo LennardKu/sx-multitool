@@ -67,10 +67,11 @@ echo '<div class="sx_tabs">';
             $form_uuid = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
             $colorInformation = new sx_login_screen;    
             $reload_content = "'logo-login'";
+            $reload_content_secondary = "'background-login'";
 
 
             echo '<div class="container sx-form-wrapper">';
-                echo '<form sx-form-uuid="'.$form_uuid.'" after-function="loadSingleItem('.$reload_content.')" sx-sumbit-page="/global-variables/login-screen.php?confirm=true" dont-reset-form="true" reload="false">'; 
+                echo '<form sx-form-uuid="'.$form_uuid.'" after-function="loadSingleItem('.$reload_content.');loadSingleItem('.$reload_content_secondary.');" sx-sumbit-page="/global-variables/login-screen.php?confirm=true" dont-reset-form="true" reload="false">'; 
                         
                     echo '<label for="variable">Custom style</label>';
                     echo '<textarea style="height:200px" name="style" id="css-editor"></textarea>';
@@ -80,14 +81,23 @@ echo '<div class="sx_tabs">';
 
                     echo '<img src="" id="login-image" src-after loaded="false" load-content="logo-login" width="200"/>';
                     
+                    echo '<br />';
+                    echo '<label for="variable">Achtergrond foto</label>';
+                    echo '<input type="file" name="background" accept="*/image">';
+
+                    echo '<img src="" id="background-image" src-after loaded="false" load-content="background-login" width="200"/>';
 
                     echo '<hr></hr>';
                     echo '<span>Kleuren</span><br />';
 
                     
-                    echo '<label for="variable">Knop kleur</label><br />';
-                    echo '<input type="color" name="color[#wp-submit@background-color]" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><br />';
+                    echo '<label for="variable">Knop  kleur</label><br />';
+                    echo '<input type="color" name="color[#wp-submit@color]" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><br />';
                     
+                    echo '<label for="variable">Knop achtergrond kleur</label><br />';
+                    echo '<input type="color" name="color[.button-primary@background-color]" value="'.$colorInformation->get_item('.button-primary')['value'].'"><br />';
+                    
+
                     echo '<label for="variable">Achtergrond kleur</label><br />';
                     echo '<input type="color" name="color[body@background]" value="'.$colorInformation->get_item('body')['value'].'"><br />';
 

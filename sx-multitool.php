@@ -1,8 +1,9 @@
 <?php
 /*
-    Plugin Name: Sx Multitool
-    Description: A sx plugin
-    Author: Sx development team
+*   Plugin Name: Sx Multitool
+*   Plugin Uri: https://github.com/LennardKu/sx-multitool
+*   Description: A sx plugin
+*   Author: Sx development team
     Version: 1.0
 */
 
@@ -61,7 +62,9 @@ include sx_plugin_path().'/update.php';
 */
 include sx_plugin_path().'includes/navigation.include.php';
 
-// Change login page
+/*
+*   Change login page
+*/
 function themeprefix_login_page() { 
     $login_page_style = new sx_login_screen;
     $login_page_style = $login_page_style->get_items();
@@ -69,6 +72,11 @@ function themeprefix_login_page() {
     foreach($login_page_style as $style){
         if($style['slug'] == 'logo'){
             echo '<style> #login h1 a{ background-image:url('.get_site_url().$style['value'].');background-size:contain;max-width:280px;width:100%;}</style>';
+            continue;
+        }
+
+        if($style['slug'] == 'background'){ // background
+            echo '<style> body{ background-image:url('.get_site_url().$style['value'].') !important;background-size:cover !important;background-repeat:no-repeat}</style>';
             continue;
         }
 
