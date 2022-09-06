@@ -1,11 +1,11 @@
 <?php
 /*
-*   Plugin Name: Sx Multitool
-*   Plugin URI: https://github.com/LennardKu/sx-multitool/
-*   Description: A sx plugin for managing data
-*   Author: Sx development team
-*   Version: 1
-*   Author URI:  https://simplix.nl
+*  Plugin Name: Sx Multitool
+*  Version: 1.0.0
+*  Plugin Uri: https://github.com/LennardKu/sx-multitool/
+*  Description: A sx plugin for managing data
+*  Author: Sx development team
+*  Author Uri:  https://simplix.nl
 */
 $debug = true;
 
@@ -14,7 +14,15 @@ if(isset($debug) && $debug == true){ error_reporting(E_ALL); ini_set('display_er
 /*
 *   Updater
 */
-include 'update.php';
+require 'plugin-update-checker/plugin-update-checker.php';
+
+$SxMultitoolUpdateChecker = Puc_v4p13_Factory::buildUpdateChecker(
+	'https://github.com/LennardKu/sx-multitool/',
+	__FILE__,
+	'sx-multitool'
+);
+
+$SxMultitoolUpdateChecker->SetBranch('main');
 
 
 /*
