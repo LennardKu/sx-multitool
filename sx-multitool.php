@@ -1,15 +1,21 @@
 <?php
 /*
 *   Plugin Name: Sx Multitool
-*   Plugin Uri: https://github.com/LennardKu/sx-multitool
-*   Description: A sx plugin
+*   Plugin URI: https://github.com/LennardKu/sx-multitool/
+*   Description: A sx plugin for managing data
 *   Author: Sx development team
-    Version: 1.0
+*   Version: 1
+*   Author URI:  https://simplix.nl
 */
-
 $debug = true;
 
 if(isset($debug) && $debug == true){ error_reporting(E_ALL); ini_set('display_errors', 'On'); } // Debug state
+
+/*
+*   Updater
+*/
+include 'update.php';
+
 
 /*
 *   Define Values 
@@ -51,11 +57,6 @@ foreach(glob(sx_plugin_path().'/activate/*.activate.php') as $activate_script){
 foreach(glob(sx_plugin_path().'/shortcode/*.shortcode.php') as $activate_script){
     require_once($activate_script);
 }
-
-/*
-*   Updater
-*/
-include sx_plugin_path().'/update.php';
 
 /*
 *   Navigation
