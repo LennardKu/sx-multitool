@@ -1,7 +1,7 @@
 <?php
 /*
 *  Plugin Name: Sx Multitool
-*  Version: 2.0.0
+*  Version: 1.0.0
 *  Plugin Uri: https://github.com/LennardKu/sx-multitool/
 *  Description: A sx plugin for managing data
 *  Author: Sx development team
