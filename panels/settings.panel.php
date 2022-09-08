@@ -15,3 +15,5 @@ echo "<script defer>
     },true)
 </script>
 ";
+
+echo 'test';
