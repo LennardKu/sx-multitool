@@ -24,7 +24,6 @@ $SxMultitoolUpdateChecker = Puc_v4p13_Factory::buildUpdateChecker(
 
 $SxMultitoolUpdateChecker->SetBranch('main');
 
-
 /*
 *   Define Values 
 */
@@ -111,4 +110,4 @@ if(isset($_POST['sx-multitool-accept-cookie'])){
     setcookie('sx-multitool-accept-cookie',  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(25/strlen($x)) )),1,25), time() + (86400 * 356), "/"); // 86400 = 1 day
 }
 
-
+new Change_WP_Admin_Login;

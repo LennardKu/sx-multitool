@@ -2,14 +2,6 @@
 if(!defined('Sx_file_access')){ die('Could not open file');} // Disable direct access
 
 
-// if(isset($_FILES['file'])){
-//     $upload = new sx_upload($_FILES['file'],array(),'test');
-//     $upload->create_file();
-//     echo $upload->get_file_information()['complete_url'];
-// }
-
-echo '<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>';
-
 echo '<div class="sx_tabs">';
 
     echo '<input type="radio" name="sx_tabs" id="standard_variables" checked="checked">';
@@ -89,23 +81,22 @@ echo '<div class="sx_tabs">';
 
                     echo '<hr></hr>';
                     echo '<span>Kleuren</span><br />';
-
                     
                     echo '<label for="variable">Knop  kleur</label><br />';
-                    echo '<input type="text" name="color[#wp-submit@color]" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><br />';
+                    echo '<input type="text" name="color[#wp-submit@color]" data-color-changer="'.($ChangeUuid = 'color-'.generateRandomString()).'" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><div style="background-color:'.$colorInformation->get_item('#wp-submit')['value'].'" class="color-preview"  id="'.$ChangeUuid.'"></div><br /><br />';
                     
                     echo '<label for="variable">Knop achtergrond kleur</label><br />';
-                    echo '<input type="text" name="color[.button-primary@background-color]" value="'.$colorInformation->get_item('.button-primary')['value'].'"><br />';
+                    echo '<input type="text" name="color[.button-primary@background-color]" data-color-changer="'.($ChangeUuid = 'color-'.generateRandomString()).'" value="'.$colorInformation->get_item('.button-primary')['value'].'"><div  id="'.$ChangeUuid.'" style="background-color:'.$colorInformation->get_item('.button-primary')['value'].'" class="color-preview"></div><br /><br />';
                     
 
                     echo '<label for="variable">Achtergrond kleur</label><br />';
-                    echo '<input type="text" name="color[body@background]" value="'.$colorInformation->get_item('body')['value'].'"><br />';
+                    echo '<input type="text" name="color[body@background]" data-color-changer="'.($ChangeUuid = 'color-'.generateRandomString()).'" value="'.$colorInformation->get_item('body')['value'].'"><div style="background-color:'.$colorInformation->get_item('body')['value'].'" id="'.$ChangeUuid.'" class="color-preview"></div><br />';
 
                     echo '<label for="variable">Icoon kleur</label><br />';
-                    echo '<input type="text" name="color[.dashicons@color]" value="'.$colorInformation->get_item('.dashicons')['value'].'"><br />';
+                    echo '<input type="text" name="color[.dashicons@color]" data-color-changer="'.($ChangeUuid = 'color-'.generateRandomString()).'" value="'.$colorInformation->get_item('.dashicons')['value'].'"><div  style="background-color:'.$colorInformation->get_item('.dashicons')['value'].'" id="'.$ChangeUuid.'" class="color-preview"></div><br /><br />';
 
                     echo '<label for="variable">Link kleur</label><br />';
-                    echo '<input type="text" name="color[a@color]" value="'.$colorInformation->get_item('a')['value'].'"><br />';
+                    echo '<input type="text" name="color[a@color]"  data-color-changer="'.($ChangeUuid = 'color-'.generateRandomString()).'"value="'.$colorInformation->get_item('a')['value'].'"><div style="background-color:'.$colorInformation->get_item('a')['value'].'" id="'.$ChangeUuid.'" class="color-preview"></div><br /><br />';
 
                 echo '</form>';
                 echo '<br / >';
@@ -116,53 +107,53 @@ echo '<div class="sx_tabs">';
         echo '</div>';
 
     echo '</div>';
-    if(true == false){
-    /*
-    *   Cookie message 
-    */
-    $cookie_message = new cookie_message;
 
-    echo '<input type="radio" name="sx_tabs" id="cookie_message" >';
-    echo '<label for="cookie_message"class="tab_indicator">Cookie melding</label>';
-    echo '<div class="tab">';
-        echo '<h1><label style="background-color:transparent"><input '.($cookie_message->cookie_information()['status'] == 'true' ? 'checked' : '').' type="Checkbox" change-data="change_cookie_message" /> Cookie melding</label></h1>'; 
+    if(true == false){ // Disabled
+        /*
+        *   Cookie message 
+        */
+        $cookie_message = new cookie_message;
 
-        echo '<div class="" style="max-width:900px">';
+        echo '<input type="radio" name="sx_tabs" id="cookie_message" >';
+        echo '<label for="cookie_message"class="tab_indicator">Cookie melding</label>';
+        echo '<div class="tab">';
+            echo '<h1><label style="background-color:transparent"><input '.($cookie_message->cookie_information()['status'] == 'true' ? 'checked' : '').' type="Checkbox" change-data="change_cookie_message" /> Cookie melding</label></h1>'; 
 
-            $form_uuid = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
+            echo '<div class="" style="max-width:900px">';
 
-            echo '<div class="container sx-form-wrapper">';
-                echo '<form sx-form-uuid="'.$form_uuid.'" sx-sumbit-page="/global-variables/cookie_message.php?edit=true" dont-reset-form="true" reload="false">'; 
-                        
-                    echo '<label for="variable">Melding</label>';
-                    echo '<textarea style="height:200px" name="message">'.$cookie_message->cookie_information()['message'].'</textarea>';
+                $form_uuid = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
 
-                    echo '<label for="variable">style</label>';
-                    echo '<textarea style="height:200px" name="style">'.$cookie_message->cookie_information()['style'].'</textarea>';
+                echo '<div class="container sx-form-wrapper">';
+                    echo '<form sx-form-uuid="'.$form_uuid.'" sx-sumbit-page="/global-variables/cookie_message.php?edit=true" dont-reset-form="true" reload="false">'; 
+                            
+                        echo '<label for="variable">Melding</label>';
+                        echo '<textarea style="height:200px" name="message">'.$cookie_message->cookie_information()['message'].'</textarea>';
 
-                    echo '<label for="variable">Accept scripts</label>';
-                    echo '<select class="js-example-basic-multiple" name="accept[]" multiple="multiple" load-content="accept_script_variables" loaded="false"></select>';
-                echo '</form>';
+                        echo '<label for="variable">style</label>';
+                        echo '<textarea style="height:200px" name="style">'.$cookie_message->cookie_information()['style'].'</textarea>';
 
-                echo '<button btn="not-important" style="margin-right:10px" cookie-concept="'.$form_uuid.'">Concept bekijken</button>';
-                echo '<button btn="default" sx-submit-form="'.$form_uuid.'">Opslaan</button>';
+                        echo '<label for="variable">Accept scripts</label>';
+                        echo '<select class="js-example-basic-multiple" name="accept[]" multiple="multiple" load-content="accept_script_variables" loaded="false"></select>';
+                    echo '</form>';
+
+                    echo '<button btn="not-important" style="margin-right:10px" cookie-concept="'.$form_uuid.'">Concept bekijken</button>';
+                    echo '<button btn="default" sx-submit-form="'.$form_uuid.'">Opslaan</button>';
+                echo '</div>';
+
             echo '</div>';
-
+    
         echo '</div>';
-  
-    echo '</div>';
-}
+    }
+
 
 echo '</div>';
 
 
 // Js 
 echo '<script src="'.sx_plugin_path('url').'/src/js/main.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
-echo '<script src="'.sx_plugin_path('url').'/src/js/global_variables.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
 echo '<script src="'.sx_plugin_path('url').'/src/js/modal.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
+echo '<script src="'.sx_plugin_path('url').'/src/js/global_variables.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
 echo '<script src="'.sx_plugin_path('url').'/src/js/ace.js"></script>';
 echo '<script>var editor = ace.edit("css-editor");
 editor.setTheme("ace/theme/monokai");
 editor.getSession().setMode("ace/mode/css"); </script>';
-// echo '<script src="'.sx_plugin_path('url').'/src/js/select2.js"></script>';
-// echo '<link rel="stylesheet" href="'.sx_plugin_path('url').'src/css/select2.min.css">';

@@ -256,3 +256,10 @@ const loadSingleItem = (Element)=>{
         }
     });
 }
+
+/*
+*   Color changer
+*/
+jQuery(document).on('keyup','[data-color-changer]',function(){
+    jQuery("#"+jQuery(this).attr('data-color-changer')).css('background-color',jQuery(this).val());
+});

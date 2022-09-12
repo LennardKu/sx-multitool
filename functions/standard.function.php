@@ -30,3 +30,14 @@ function sx_standard_create_table($table_name = '',$sql = ''){
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     return dbDelta( $sql );
 }
+
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return (rand(1,2) == 1 ? 'd' : 'a').$randomString;
+}
