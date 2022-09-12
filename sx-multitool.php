@@ -3,8 +3,8 @@
 *  Plugin Name: Sx Multitool
 *  Version: 1.0.0
 *  Plugin Uri: https://github.com/LennardKu/sx-multitool/
-*  Description: A sx plugin for managing data
-*  Author: Sx development team
+*  Description: Op maat gemaakte plugin door Simplix
+*  Author: Simplix
 *  Author Uri:  https://simplix.nl
 */
 $debug = true;
@@ -110,3 +110,5 @@ add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 if(isset($_POST['sx-multitool-accept-cookie'])){
     setcookie('sx-multitool-accept-cookie',  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(25/strlen($x)) )),1,25), time() + (86400 * 356), "/"); // 86400 = 1 day
 }
+
+

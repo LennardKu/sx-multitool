@@ -92,20 +92,20 @@ echo '<div class="sx_tabs">';
 
                     
                     echo '<label for="variable">Knop  kleur</label><br />';
-                    echo '<input type="color" name="color[#wp-submit@color]" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><br />';
+                    echo '<input type="text" name="color[#wp-submit@color]" value="'.$colorInformation->get_item('#wp-submit')['value'].'"><br />';
                     
                     echo '<label for="variable">Knop achtergrond kleur</label><br />';
-                    echo '<input type="color" name="color[.button-primary@background-color]" value="'.$colorInformation->get_item('.button-primary')['value'].'"><br />';
+                    echo '<input type="text" name="color[.button-primary@background-color]" value="'.$colorInformation->get_item('.button-primary')['value'].'"><br />';
                     
 
                     echo '<label for="variable">Achtergrond kleur</label><br />';
-                    echo '<input type="color" name="color[body@background]" value="'.$colorInformation->get_item('body')['value'].'"><br />';
+                    echo '<input type="text" name="color[body@background]" value="'.$colorInformation->get_item('body')['value'].'"><br />';
 
                     echo '<label for="variable">Icoon kleur</label><br />';
-                    echo '<input type="color" name="color[.dashicons@color]" value="'.$colorInformation->get_item('.dashicons')['value'].'"><br />';
+                    echo '<input type="text" name="color[.dashicons@color]" value="'.$colorInformation->get_item('.dashicons')['value'].'"><br />';
 
                     echo '<label for="variable">Link kleur</label><br />';
-                    echo '<input type="color" name="color[a@color]" value="'.$colorInformation->get_item('a')['value'].'"><br />';
+                    echo '<input type="text" name="color[a@color]" value="'.$colorInformation->get_item('a')['value'].'"><br />';
 
                 echo '</form>';
                 echo '<br / >';
@@ -116,7 +116,7 @@ echo '<div class="sx_tabs">';
         echo '</div>';
 
     echo '</div>';
-
+    if(true == false){
     /*
     *   Cookie message 
     */
@@ -149,9 +149,9 @@ echo '<div class="sx_tabs">';
             echo '</div>';
 
         echo '</div>';
-
-
+  
     echo '</div>';
+}
 
 echo '</div>';
 
