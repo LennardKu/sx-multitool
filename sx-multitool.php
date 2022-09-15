@@ -54,21 +54,21 @@ foreach (glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name."
 *   Activate scripts 
 *   Database names
 */
-foreach(glob(sx_plugin_path().'/activate/*.activate.php') as $activate_script){
+foreach(glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/activate/*.activate.php') as $activate_script){
     require_once($activate_script);
 }
 
 /*
 *   Shortcodes
 */
-foreach(glob(sx_plugin_path().'/shortcode/*.shortcode.php') as $activate_script){
+foreach(glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/shortcode/*.shortcode.php') as $activate_script){
     require_once($activate_script);
 }
 
 /*
 *   Navigation
 */
-include sx_plugin_path().'includes/navigation.include.php';
+include $_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/includes/navigation.include.php';
 
 /*
 *   Change login page
