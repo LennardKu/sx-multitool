@@ -23,4 +23,15 @@ if($key == 'change_cookie_message'){
     exit;
 }
 
+
+/*
+*   Delete own format
+*/
+if($key == 'delete-ownformat'){
+    $DeleteItem = new sx_images;
+    $DeleteItem->deleteItem('OwnFormat',$_POST['data']);
+    echo 'success';
+    exit;
+}
+
 echo 'error';

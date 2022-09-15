@@ -1,8 +1,8 @@
 <?php defined('ABSPATH') or die();
 
-if ( defined( 'ABSPATH' ) && ! class_exists( 'Change_WP_Admin_Login' ) ) {
+if ( defined( 'ABSPATH' ) && ! class_exists( 'sx_Admin_Login' ) ) {
 
-	class Change_WP_Admin_Login {
+	class sx_Admin_Login {
 		private $wp_login_php;
 		public $NewUrl;
 

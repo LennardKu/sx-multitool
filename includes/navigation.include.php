@@ -14,8 +14,8 @@ function sx_multitool_navigation(){
 
         // Submenu 
         add_submenu_page( 'sx_multitool', 'Standaard waarden', 'Standaard waarden', 'manage_options', 'sx_multitool_global_variables', 'sx_multitool_global_variables');
-        add_submenu_page( 'sx_multitool', 'Beveiliging ', 'Beveiliging', 'manage_options', 'sx_multitool_security', 'sx_multitool_security');
         add_submenu_page( 'sx_multitool', 'Afbeeldingen ', 'Afbeeldingen', 'manage_options', 'sx_multitool_images', 'sx_multitool_images');
+        add_submenu_page( 'sx_multitool', 'Beveiliging ', 'Beveiliging', 'manage_options', 'sx_multitool_security', 'sx_multitool_security');
 
     }
 

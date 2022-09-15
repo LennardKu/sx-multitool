@@ -21,7 +21,7 @@ if(!sx_standard_table_exist($sx_database_options)){
     sx_standard_create_table($sx_database_options,$sql);
 
     $ChangeUrl = new sx_options;
-    $ChangeUrl->create_item('LoginUrl','wp-login');
+    $ChangeUrl->create_item('LoginUrl','');
     
   }
 

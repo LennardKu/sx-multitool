@@ -216,6 +216,7 @@ const sx_reload_content = (reload_element)=>{
 */
 const load_content = ()=>{
     jQuery("[load-content][loaded='false']").each(function() { 
+        offset = '';
         if(jQuery(this).attr('offset') !== undefined){offset = jQuery(this).attr('offset'); }
         get_content(jQuery(this).attr('load-content'),jQuery(this),offset);
     });
@@ -256,6 +257,79 @@ const loadSingleItem = (Element)=>{
         }
     });
 }
+
+/*
+*   Own format
+*/
+const ownFormats = (counter)=>{
+    randomString = sx_random_string(25);
+    deleteId = "'#delete-"+randomString+"'";
+    response = '';
+    response += '<div class="" id="delete-'+randomString+'">';
+        response += '<label for="variable">Naam</label>';
+        response += '<input type="text" required name="ownformat['+counter+'][name]"/>';
+
+        response += '<label for="variable">Formaat</label>';
+        response += '<br>';
+        response += '<div style="display:flex">';
+            response += '<input type="number" required style="width:50%" name="ownformat['+counter+'][width]" placeholder="Width"/>';
+            response += '<input type="number" required style="width:50%" name="ownformat['+counter+'][height]" placeholder="Height"/>';
+        response += '</div>';
+
+        response += '<span onclick="jQuery('+deleteId+').remove()" style="color:red;cursor:pointer;float:right">Verwijderen</span>';
+    response += '</div>';
+    response += '<br>';
+    return response;
+}
+
+ownFormatCounter = 0;
+
+jQuery(document).on('click','[data-own-formats="add"]',function(){
+    ownFormatCounter++;
+    jQuery('[data-own-formats="wrapper"]').append(ownFormats(ownFormatCounter));
+});
+
+const emptyWrapper = (wrapper)=>{
+
+    if(wrapper == 1){ jQuery('[data-own-formats="wrapper"]').html(''); }
+
+};
+
+
+/*
+*   Delte own format 
+*/
+jQuery(document).on('click','[data-delete-own-format]',function(){
+    data = jQuery(this).attr('data-delete-own-format');
+
+    if (confirm("Wil je dit formaat verwijderen?") !== true) {
+        return false;
+    }
+    
+    jQuery(this).parent().remove();
+
+    jQuery.ajax({
+        url: sx_plugin_location_main+'/ajax/change_data.php',
+        type:'post',
+        data:{
+            data:data,
+            key:'delete-ownformat'
+        },success:function(response){
+            sx_loading_screen(false);
+            btn.attr('executing','false'); // Disable executing  
+            
+            if(response == 'error'){ sx_popups('Opdracht mislukt.','error',true); return false;} // Error         
+
+            sx_popups('Gewijzigd.','success',true); 
+
+        },error: function(){
+            sx_loading_screen(false);
+            btn.attr('executing','false'); // Disable executing  
+        }
+    });
+
+});
+
 
 /*
 *   Color changer

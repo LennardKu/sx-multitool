@@ -41,3 +41,57 @@ function generateRandomString($length = 10) {
     }
     return (rand(1,2) == 1 ? 'd' : 'a').$randomString;
 }
+
+
+
+function default_image_sizes() {
+    global $_wp_additional_image_sizes;
+
+    $thumb_crop = get_option( 'thumbnail_crop' ) == 1;
+
+    /**
+     * Standard image sizes
+     */
+    $sizes = [
+        'thumbnail' => [
+            'type'		=> 'default',
+            'width'		=> get_option( 'thumbnail_size_w' ),
+            'height'	=> get_option( 'thumbnail_size_h' ),
+            'cropped'	=> $thumb_crop
+        ],
+        'medium' => [
+            'type'		=> 'default',
+            'width'		=> get_option( 'medium_size_w' ),
+            'height'	=> get_option( 'medium_size_h' ),
+            'cropped'	=> $thumb_crop
+        ],
+        'medium_large' => [
+            'type'		=> 'default',
+            'width'		=> get_option( 'medium_large_size_w' ),
+            'height'	=> get_option( 'medium_large_size_h' ),
+            'cropped'	=> $thumb_crop
+        ],
+        'large' => [
+            'type'		=> 'default',
+            'width'		=> get_option( 'large_size_w' ),
+            'height'	=> get_option( 'large_size_h' ),
+            'cropped'	=> $thumb_crop
+        ]
+    ];
+
+    /**
+     * Additional image sizes
+     */
+    if( is_array( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) ) :
+    foreach ( $_wp_additional_image_sizes as $size => $data ) {
+        $sizes[ $size ] = [
+            'type'		=> 'custom',
+            'width'		=> $data['width'],
+            'height'	=> $data['height'],
+            'cropped'	=> $data['crop'] == 1
+        ];
+    }
+    endif;
+
+    return $sizes;
+}

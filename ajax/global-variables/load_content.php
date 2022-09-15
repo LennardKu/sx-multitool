@@ -85,3 +85,33 @@ if($content_name == 'background-login'){
         echo get_site_url().$login_logo->get_item('background')['value']; 
     }
 }
+
+/*
+*   Resize loader
+*/
+if($content_name == 'image-sizes'){
+    $disableImage = new sx_images;
+    $DisalbedSizes = $disableImage->disabledSizes();
+    $DisalbedSize = array();
+    foreach($DisalbedSizes as $value ){
+        array_push($DisalbedSize,$value['value']);
+    }
+
+    $ownFormats = new sx_images;
+    $formats = $ownFormats->ownFormats();
+    $ownFormats = array();
+    foreach($formats as $value ){
+        array_push($ownFormats,$value['value']);
+    }
+
+    foreach(default_image_sizes() as $key => $imageSize){
+        echo '<span>';
+            echo '<label for="size-'.$key.'">';
+                echo '<input '. (is_array($DisalbedSize) && in_array($key,$DisalbedSize) ? 'checked' : '').' type="checkbox" name="size['.$key.']" id="size-'.$key.'" value="'.$key.'">';
+                echo '<b>' . $key  .'</b> Formaat: '.$imageSize['width'].'x'.$imageSize['height'];
+            echo '</label>';
+            echo (in_array($key.'x'.$imageSize['width'].'x'.$imageSize['height'],$ownFormats) ? '<span data-delete-own-format="'.$key.'x'.$imageSize['width'].'x'.$imageSize['height'].'" style="color:red;cursor:pointer;float:right"> Verwijderen</span>' : '');
+            echo '<br>';
+        echo '</span>';
+    }
+}
