@@ -149,7 +149,7 @@ if(file_exists($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.
     *   Diffrent login url
     */
     $db = new sx_db(sx_database()[0],sx_database()[1],sx_database()[2],sx_database()[3]);   
-    if(!empty(trim($db->query('SELECT * FROM `'.$sx_database_options.'` WHERE `slug` = ?','LoginUrl')->fetchArray()['value']))){
+    if(isset($db->query('SELECT * FROM `'.$sx_database_options.'` WHERE `slug` = ?','LoginUrl')->fetchArray()['value']) && !empty(trim($db->query('SELECT * FROM `'.$sx_database_options.'` WHERE `slug` = ?','LoginUrl')->fetchArray()['value']))){
         new sx_Admin_Login;
     }
 }else{
