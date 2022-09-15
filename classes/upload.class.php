@@ -19,11 +19,15 @@ class sx_upload{
 
         if($file == false){ return false; } // No file 
 
+        if(!is_dir($_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/sx-uploads/')){
+            mk_dir($_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/sx-uploads/');
+        }
+
         $this->allowed_file_types = $file_types;
         $this->file = $file;
         $this->file_type = $this->get_file_type();
-        $this->file_path = (!empty(trim($file_path)) ? sx_plugin_path().'upload/'.$file_path : sx_plugin_path().'upload/');
-        $this->file_url = (!empty(trim($file_path)) ? sx_plugin_path('url').'upload/'.$file_path : sx_plugin_path('url').'upload/');
+        $this->file_path = (!empty(trim($file_path)) ? $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/sx-uploads/'.$file_path : $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/sx-uploads/');
+        $this->file_url = (!empty(trim($file_path)) ? get_site_url().'/wp-content/uploads/sx-uploads/'.$file_path : get_site_url().'/wp-content/uploads/sx-uploads/');
         $this->file_name = (!empty(trim($file_name)) ? $this->check_custom_file_name($file_name) : $this->random_file_name());
         
         $this->check_file_type(); // Check file upload 
