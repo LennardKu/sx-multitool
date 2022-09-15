@@ -8,8 +8,8 @@
 *  Author Uri:  https://simplix.nl
 */
 $debug = true;
-
 if(isset($debug) && $debug == true){ error_reporting(E_ALL); ini_set('display_errors', 'On'); } // Debug state
+global $table_prefix;
 
 /*
 *   Updater
@@ -57,6 +57,7 @@ foreach (glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name."
 foreach(glob($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/activate/*.activate.php') as $activate_script){
     require_once($activate_script);
 }
+
 
 /*
 *   Shortcodes
@@ -110,43 +111,47 @@ if(isset($_POST['sx-multitool-accept-cookie'])){
     setcookie('sx-multitool-accept-cookie',  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(25/strlen($x)) )),1,25), time() + (86400 * 356), "/"); // 86400 = 1 day
 }
 
-/*
-*   Disable image sizes
-*/
-$disableImage = new sx_images;
-$DisalbedSizes = $disableImage->disabledSizes();
+if(file_exists($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/index.php')){
+    /*
+    *   Disable image sizes
+    */
+    $disableImage = new sx_images;
+    $DisalbedSizes = $disableImage->disabledSizes();
 
-function remove_default_image_sizes( $sizes ) {
-    global $DisalbedSizes;
+    function remove_default_image_sizes( $sizes ) {
+        global $DisalbedSizes;
 
-    foreach($DisalbedSizes as $DisalbedSize){
-        unset($sizes[$DisalbedSize['value']]);
+        foreach($DisalbedSizes as $DisalbedSize){
+            unset($sizes[$DisalbedSize['value']]);
+        }
+
+        return $sizes;
     }
 
-    return $sizes;
-}
-
-add_filter( 'intermediate_image_sizes_advanced', 'remove_default_image_sizes' );
+    add_filter( 'intermediate_image_sizes_advanced', 'remove_default_image_sizes' );
 
 
-/*
-*   Add custom sizes 
-*/
-$ownFormats = new sx_images;
-$formats = $ownFormats->ownFormats();
-if(is_array($formats)){
-    foreach($formats as $format){
-        $format = explode('x',$format['value']);
-        add_image_size( $format[0],$format[1],$format[2]);
+    /*
+    *   Add custom sizes 
+    */
+    $ownFormats = new sx_images;
+    $formats = $ownFormats->ownFormats();
+    if(is_array($formats)){
+        foreach($formats as $format){
+            $format = explode('x',$format['value']);
+            add_image_size( $format[0],$format[1],$format[2]);
+        }
     }
-}
 
 
 
-/*
-*   Diffrent login url
-*/
-$db = new sx_db(sx_database()[0],sx_database()[1],sx_database()[2],sx_database()[3]);   
-if(!empty(trim($db->query('SELECT * FROM `'.$sx_database_options.'` WHERE `slug` = ?','LoginUrl')->fetchArray()['value']))){
-    new sx_Admin_Login;
+    /*
+    *   Diffrent login url
+    */
+    $db = new sx_db(sx_database()[0],sx_database()[1],sx_database()[2],sx_database()[3]);   
+    if(!empty(trim($db->query('SELECT * FROM `'.$sx_database_options.'` WHERE `slug` = ?','LoginUrl')->fetchArray()['value']))){
+        new sx_Admin_Login;
+    }
+}else{
+    fopen($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name."/index.php", "w");
 }
