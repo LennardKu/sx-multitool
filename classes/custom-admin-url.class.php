@@ -167,28 +167,28 @@ if ( defined( 'ABSPATH' ) && ! class_exists( 'sx_Admin_Login' ) ) {
 		public function admin_init() {
 			global $pagenow;
 
-			add_settings_section(
-				'change-wp-admin-login-section',
-				__( 'Change wp-admin login', 'change-wp-admin-login' ),
-				array( $this, 'rwl_section_desc' ),
-				'permalink'
-			);
+			// add_settings_section(
+			// 	'change-wp-admin-login-section',
+			// 	__( 'Change wp-admin login', 'change-wp-admin-login' ),
+			// 	array( $this, 'rwl_section_desc' ),
+			// 	'permalink'
+			// );
 
-			add_settings_field(
-				'rwl-page',
-				'<label for="rwl-page">' . __( 'Login URL', 'change-wp-admin-login' ) . '</label>',
-				array( $this, 'rwl_page_input' ),
-				'permalink',
-				'change-wp-admin-login-section'
-			);
+			// add_settings_field(
+			// 	'rwl-page',
+			// 	'<label for="rwl-page">' . __( 'Login URL', 'change-wp-admin-login' ) . '</label>',
+			// 	array( $this, 'rwl_page_input' ),
+			// 	'permalink',
+			// 	'change-wp-admin-login-section'
+			// );
 
-			// Add redirect field
-			add_settings_field(
-				'rwl_redirect_field', __( 'Redirect URL', 'change-wp-admin-login' ),
-				array( $this, 'rwl_redirect_func' ),
-				'permalink',
-				'change-wp-admin-login-section'
-			);
+			// // Add redirect field
+			// add_settings_field(
+			// 	'rwl_redirect_field', __( 'Redirect URL', 'change-wp-admin-login' ),
+			// 	array( $this, 'rwl_redirect_func' ),
+			// 	'permalink',
+			// 	'change-wp-admin-login-section'
+			// );
 
 
 			register_setting( 'permalink','rwl_page_input');
