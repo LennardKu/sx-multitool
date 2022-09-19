@@ -11,6 +11,14 @@ $debug = true;
 if(isset($debug) && $debug == true){ error_reporting(E_ALL); ini_set('display_errors', 'On'); } // Debug state
 global $table_prefix;
 
+// Check for deactivate 
+register_deactivation_hook( __FILE__, 'wpse_deactivate_multitool' );
+
+function wpse_deactivate_multitool() {
+    unlink($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/sx-multitool/index.php");
+}
+
+
 /*
 *   Updater
 */
@@ -110,6 +118,10 @@ add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 if(isset($_POST['sx-multitool-accept-cookie'])){
     setcookie('sx-multitool-accept-cookie',  substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(25/strlen($x)) )),1,25), time() + (86400 * 356), "/"); // 86400 = 1 day
 }
+
+
+
+
 
 if(file_exists($_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/".$sx_plugin_name.'/index.php')){
     /*
