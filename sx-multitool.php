@@ -1,7 +1,7 @@
 <?php
 /*
 *  Plugin Name: Sx Multitool
-*  Version: 1.0.5
+*  Version: 1.0.6
 *  Plugin Uri: https://github.com/LennardKu/sx-multitool/
 *  Description: Op maat gemaakte plugin door Simplix
 *  Author: Simplix
