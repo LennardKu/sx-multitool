@@ -64,9 +64,6 @@ echo '<div class="sx_tabs">';
 
             echo '<div class="container sx-form-wrapper">';
                 echo '<form sx-form-uuid="'.$form_uuid.'" after-function="loadSingleItem('.$reload_content.');loadSingleItem('.$reload_content_secondary.');" sx-sumbit-page="/global-variables/login-screen.php?confirm=true" dont-reset-form="true" reload="false">'; 
-                        
-                    echo '<label for="variable">Custom style</label>';
-                    echo '<textarea style="height:200px" name="style" id="css-editor"></textarea>';
 
                     echo '<label for="variable">Logo</label>';
                     echo '<input type="file" name="logo" accept="*/image">';
