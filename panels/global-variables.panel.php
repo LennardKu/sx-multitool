@@ -154,6 +154,3 @@ echo '<script src="'.sx_plugin_path('url').'/src/js/main.js" sx_plugin_location=
 echo '<script src="'.sx_plugin_path('url').'/src/js/modal.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
 echo '<script src="'.sx_plugin_path('url').'/src/js/global_variables.js" sx_plugin_location="'.sx_plugin_path('url').'" ></script>';
 echo '<script src="'.sx_plugin_path('url').'/src/js/ace.js"></script>';
-echo '<script>var editor = ace.edit("css-editor");
-editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/css"); </script>';
